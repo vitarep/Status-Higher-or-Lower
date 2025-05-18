@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
-import com.adamdawi.status_higherorlower.ServerStatusWorker
+import com.adamdawi.status_higherorlower.data.worker.ServerStatusWorker
 import org.koin.java.KoinJavaComponent.getKoin
 
 class KoinWorkerFactory : WorkerFactory() {

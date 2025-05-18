@@ -1,5 +1,6 @@
-package com.adamdawi.status_higherorlower
+package com.adamdawi.status_higherorlower.data.worker
 
+import android.R.drawable.ic_dialog_alert
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -52,7 +53,7 @@ class ServerStatusWorker(
         val notification = NotificationCompat.Builder(applicationContext, channelId)
             .setContentTitle("Server Status Alert")
             .setContentText(message)
-            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setSmallIcon(ic_dialog_alert)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .build()
 

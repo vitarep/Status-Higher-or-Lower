@@ -1,4 +1,4 @@
-package com.adamdawi.status_higherorlower
+package com.adamdawi.status_higherorlower.data.worker
 
 import android.content.Context
 import androidx.work.ExistingPeriodicWorkPolicy

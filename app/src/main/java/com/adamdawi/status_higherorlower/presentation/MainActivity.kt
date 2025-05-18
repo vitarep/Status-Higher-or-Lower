@@ -14,11 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
-import com.adamdawi.status_higherorlower.ServerStatusScheduler
+import com.adamdawi.status_higherorlower.data.worker.ServerStatusScheduler
 import com.adamdawi.status_higherorlower.presentation.ui.theme.StatusHigherOrLowerTheme
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
+
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -28,20 +29,11 @@ class MainActivity : ComponentActivity() {
             Log.w("MainActivity", "POST_NOTIFICATIONS permission denied")
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            when {
-                ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED -> {
-                }
-                else -> {
-                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-                }
-            }
-        }
+        requestNotificationPermissionIfNeeded()
+
         ServerStatusScheduler.scheduleWorker(applicationContext)
         enableEdgeToEdge()
 
@@ -53,6 +45,19 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
+            }
+        }
+    }
+
+    private fun requestNotificationPermissionIfNeeded() {
+        // Required only on Android 13+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
     }
