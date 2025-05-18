@@ -1,4 +1,4 @@
-package com.adamdawi.status_higherorlower.ui.theme
+package com.adamdawi.status_higherorlower.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

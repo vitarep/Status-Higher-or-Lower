@@ -7,42 +7,28 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.engine.okhttp.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.request.*
-import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
+import com.adamdawi.status_higherorlower.domain.ServerStatusRepository
+import com.adamdawi.status_higherorlower.domain.model.ServerStatus
 import java.net.UnknownHostException
 
 class ServerStatusWorker(
     context: Context,
-    params: WorkerParameters
+    params: WorkerParameters,
+    private val repository: ServerStatusRepository
 ) : CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
-        val client = HttpClient(OkHttp) {
-            install(ContentNegotiation) {
-                json(Json { ignoreUnknownKeys = true })
-            }
-        }
-
         return try {
-            val response: ServerStatusResponse = client.get(BuildConfig.SERVER_URL).body()
-            if (response.status == "UP") {
+            val response = repository.getStatus()
+            if (response == ServerStatus.Up) {
                 Result.success()
             } else {
                 showNotification("The server is responding incorrectly.")
                 Result.success()
             }
         } catch (e: UnknownHostException) {
-            // No internet connection — do not notify
             Result.success()
         } catch (e: Exception) {
-            // Server error or other issues — notify
             showNotification("The server is unreachable.")
             Result.success()
         }
@@ -73,6 +59,3 @@ class ServerStatusWorker(
         notificationManager.notify(1, notification)
     }
 }
-
-@Serializable
-data class ServerStatusResponse(val status: String)
