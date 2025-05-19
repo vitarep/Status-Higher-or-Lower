@@ -5,12 +5,12 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.adamdawi.status_higherorlower.domain.ServerStatusRepository
 import com.adamdawi.status_higherorlower.domain.model.ServerStatus
-import java.net.UnknownHostException
 
 class ServerStatusWorker(
     context: Context,
@@ -21,16 +21,21 @@ class ServerStatusWorker(
     override suspend fun doWork(): Result {
         return try {
             val response = repository.getStatus()
-            if (response == ServerStatus.Up) {
-                Result.success()
-            } else {
-                showNotification("The server is down.")
-                Result.success()
+            when (response) {
+                ServerStatus.Up -> {
+                    Result.success()
+                }
+                is ServerStatus.Down -> {
+                    showNotification("The server is down.")
+                    Result.success()
+                }
+                ServerStatus.Unreachable-> {
+                    Result.success()
+                }
             }
-        } catch (_: UnknownHostException) {
-            Result.success()
-        } catch (_: Exception) {
-            showNotification("The server is unreachable.")
+        } catch (e: Exception) {
+            Log.e("Worker error", "Unexpected error: ${e.message}", e)
+            showNotification("The server is unreachable. Unexpected error in worker.")
             Result.success()
         }
     }

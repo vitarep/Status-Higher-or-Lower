@@ -19,11 +19,12 @@ class ServerStatusViewModel(
         fetchStatus()
     }
 
-    fun fetchStatus() {
+    private fun fetchStatus() {
         viewModelScope.launch {
             when (val result = repository.getStatus()) {
                 is ServerStatus.Up -> _status.value = "🟢 Server is UP"
                 is ServerStatus.Down -> _status.value = "🔴 Server is DOWN - ${result.reason}"
+                is ServerStatus.Unreachable -> _status.value = "\uD83D\uDFE0 Server is UNREACHABLE"
             }
         }
     }

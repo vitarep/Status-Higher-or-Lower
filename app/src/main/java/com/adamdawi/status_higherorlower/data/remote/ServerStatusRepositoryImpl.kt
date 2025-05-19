@@ -7,6 +7,9 @@ import com.adamdawi.status_higherorlower.domain.model.ServerStatus
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
+import java.net.ConnectException
+import java.net.UnknownHostException
+import java.nio.channels.UnresolvedAddressException
 
 class ServerStatusRepositoryImpl(
     private val httpClient: HttpClient
@@ -27,7 +30,16 @@ class ServerStatusRepositoryImpl(
             } else {
                 ServerStatus.Down("HTTP ${statusCode.value} ${statusCode.description}")
             }
-        } catch (e: Exception) {
+        } catch (e: UnknownHostException) {
+            Log.e("Network", "Unknown host: ${e.message}")
+            ServerStatus.Unreachable
+        } catch (e: UnresolvedAddressException) {
+            Log.e("Network", "Unresolved address: ${e.message}")
+            ServerStatus.Unreachable
+        } catch (e: ConnectException) {
+            Log.e("Network", "Connection refused: ${e.message}")
+            ServerStatus.Unreachable
+        }catch (e: Exception) {
             Log.e(TAG, "Error contacting server", e)
             ServerStatus.Down("Exception: ${e.message}")
         }
