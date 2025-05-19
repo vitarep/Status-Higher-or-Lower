@@ -23,8 +23,7 @@ class ServerStatusViewModel(
         viewModelScope.launch {
             when (val result = repository.getStatus()) {
                 is ServerStatus.Up -> _status.value = "🟢 Server is UP"
-                is ServerStatus.Down -> _status.value = "🔴 Server is DOWN\n${result.reason}"
-                ServerStatus.Unreachable -> _status.value = "⚠️ Cannot reach server"
+                is ServerStatus.Down -> _status.value = "🔴 Server is DOWN - ${result.reason}"
             }
         }
     }

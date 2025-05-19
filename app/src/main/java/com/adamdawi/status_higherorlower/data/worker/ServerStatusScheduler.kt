@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.adamdawi.status_higherorlower.domain.util.Constants
 import java.util.concurrent.TimeUnit
 
 object ServerStatusScheduler {
@@ -13,7 +14,7 @@ object ServerStatusScheduler {
         ).build()
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
-            "server_status_check",
+            Constants.SERVER_STATUS_WORKER_NAME,
             ExistingPeriodicWorkPolicy.UPDATE,
             workRequest
         )

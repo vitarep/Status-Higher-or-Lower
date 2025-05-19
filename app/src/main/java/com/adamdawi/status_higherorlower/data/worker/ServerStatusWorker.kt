@@ -24,12 +24,12 @@ class ServerStatusWorker(
             if (response == ServerStatus.Up) {
                 Result.success()
             } else {
-                showNotification("The server is responding incorrectly.")
+                showNotification("The server is down.")
                 Result.success()
             }
-        } catch (e: UnknownHostException) {
+        } catch (_: UnknownHostException) {
             Result.success()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             showNotification("The server is unreachable.")
             Result.success()
         }
