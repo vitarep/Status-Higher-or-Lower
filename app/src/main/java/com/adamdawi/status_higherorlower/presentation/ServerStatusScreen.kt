@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.adamdawi.status_higherorlower.presentation.ui.theme.StatusHigherOrLowerTheme
+import com.adamdawi.status_higherorlower.presentation.theme.StatusHigherOrLowerTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -47,7 +47,7 @@ fun ServerStatusScreenContent(
         Text(
             text = status,
             color = Color.White,
-            fontSize = 20.sp
+            fontSize = 18.sp
         )
     }
 }

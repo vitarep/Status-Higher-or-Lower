@@ -12,7 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.adamdawi.status_higherorlower.data.worker.ServerStatusScheduler
 import com.adamdawi.status_higherorlower.presentation.ServerStatusScreen
-import com.adamdawi.status_higherorlower.presentation.ui.theme.StatusHigherOrLowerTheme
+import com.adamdawi.status_higherorlower.presentation.theme.StatusHigherOrLowerTheme
 
 class MainActivity : ComponentActivity() {
 
