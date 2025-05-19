@@ -3,4 +3,6 @@ A simple Android app built with Jetpack Compose and WorkManager that monitors th
 
 ## Here are some overview pictures:
 ![Image](https://github.com/user-attachments/assets/1fa3f082-28ff-4e2e-aa55-2670edb61fab)
+![1](https://github.com/user-attachments/assets/7d17e298-73ab-4321-8b01-0d2c4d874455)
 ![Image](https://github.com/user-attachments/assets/6ca6d2c3-3e7c-4254-b2cf-3a788a348c90)
+
